@@ -9,7 +9,17 @@ exports.config = {
     './e2e/**/*.e2e-spec.ts'
   ],
   capabilities: {
-    'browserName': 'chrome'
+    'browserName': 'chrome',
+    loggingPrefs: {
+      performance: 'ALL'
+    },
+    chromeOptions: {
+      //Important for benchpress to get timeline data from the browser
+      'args': ['--js-flags=--expose-gc'],
+      'perfLoggingPrefs': {
+        'traceCategories': 'v8,blink.console,devtools.timeline'
+      }
+    },
   },
   directConnect: true,
   baseUrl: 'http://localhost:4200/',
